@@ -8,16 +8,12 @@ const copy = async () => {
         const __folderCopy= path.join(__dirname, '/files_copy');
         const __folderInit = path.join(__dirname, '/files')
 
-        const isFolderCopyExists = await fs.access(__folderCopy)
-            .then(() => true)
-            .catch(() => false);
-
-        if (isFolderCopyExists) {
-            throw new Error('FS operation failed: Folder already exists');
-        }
-
         await fs.mkdir(__folderCopy)
-        const files = await fs.readdir(__folderInit);
+            .catch((err) =>
+                Promise.reject(new Error('FS operation failed:\n' + err)))
+        const files = await fs.readdir(__folderInit)
+            .catch((err) =>
+                Promise.reject(new Error('FS operation failed:\n' + err)));
 
         const copyPromises = files.map(async (file) => {
             const filePath = path.join(__folderInit, file);
