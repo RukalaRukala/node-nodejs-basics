@@ -1,11 +1,10 @@
-import {dirname} from "path";
 import {fileURLToPath} from "url";
 import fs from "fs/promises";
 import * as path from "path";
 
 const copy = async () => {
     try {
-        const __dirname = dirname(fileURLToPath(import.meta.url));
+        const __dirname = path.dirname(fileURLToPath(import.meta.url));
         const __folderCopy= path.join(__dirname, '/files_copy');
         const __folderInit = path.join(__dirname, '/files')
 
