@@ -13,6 +13,7 @@ const read = async () => {
         });
 
         stream.on('end', () => {
+            console.log('\n\n!!!Stream is destroyed!!!')
             stream.destroy();
         });
 
@@ -20,7 +21,6 @@ const read = async () => {
             reject(error);
         });
     });
-
 };
 
 await read();
