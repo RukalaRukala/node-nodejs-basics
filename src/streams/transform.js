@@ -1,4 +1,5 @@
 import {Transform} from 'stream';
+
 const transform = async () => {
     class ReverseTransform extends Transform {
         constructor() {
@@ -6,7 +7,6 @@ const transform = async () => {
         }
 
         _transform(chunk, encoding, callback) {
-            // Reverse the text and push it to the readable side
             const reversedChunk = chunk.toString().split('').reverse().join('') + '\n\n';
             this.push(reversedChunk);
             callback();
